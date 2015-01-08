@@ -1,6 +1,6 @@
 //Client File
 //this is for local host
-var client = new WebSocket("ws://localhost:2000");
+var client = new WebSocket("ws://104.236.71.29:2000");
 //this is for Digital Ocean
 //var client = new WebSocket("ws://tiffany.princesspeach.nyc:3000");
 
