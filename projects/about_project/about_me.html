@@ -1,0 +1,128 @@
+<html>
+
+<head>
+  <link href='http://fonts.googleapis.com/css?family=Titillium+Web:600' rel='stylesheet' type='text/css'>
+  <link href="about_stylesheet.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+  <script>
+  //defines body
+  var body = document.querySelector("body");
+  body.id = "body_page1";
+  //creates an empty header tag
+
+  var header = document.createElement("header");
+  header.id = "header_1";
+  body.appendChild(header);
+
+  //this creates the h1 inside the header
+  var h2 = document.createElement("h2");
+  h2.id = "h2_page1"
+  h2.innerText = "About me Generator!";
+  header.appendChild(h2);
+
+  var div = document.createElement("div");
+  div.id = "div_page1";
+  body.appendChild(div);
+
+// This generates an input box with parameter that is the placeholder
+var Textbox = function(string){
+  var input = document.createElement("input");
+  input.type = "text";
+  input.placeholder = string;
+  div.appendChild(input);
+  return input;
+}
+
+//this creates 4 textboxes
+  var input1 = Textbox("Your Name");
+  var input2 = Textbox("Sign");
+  var input3 = Textbox("Hometown");
+  var input4 = Textbox("Favorite CSS Color");
+
+
+
+  //buttons
+  var button = document.createElement("button");
+  button.id = "button"
+  button.innerText = "Make New Page";
+  div.appendChild(button);
+
+
+
+//this function will delete the old elements and generate a new page
+    var newPage = function(){
+
+      //gets values from the text boxes
+      var user_name = input1.value;
+      var user_sign = input2.value;
+      var user_hometown = input3.value;
+      var user_color = input4.value;
+
+      //changes the original body id to this
+      //this changes the background color to the users input
+      body.id = "body_page2"
+      body.style.backgroundColor = user_color;
+
+      //this removes all the original elements from page 1
+      body.removeChild(div);
+      body.removeChild(header);
+
+      //creates an empty header tag
+      var header2 = document.createElement("header");
+      header2.id = "header2";
+      body.appendChild(header2);
+
+      //this creates the h1 inside the header
+      var h1 = document.createElement("h1");
+      h1.id = "h1_page2";
+      h1.innerText = "All About " + user_name;
+      h1.style.color = user_color;
+      header2.appendChild(h1);
+
+      //this creates a new create div with two divs inside
+      var div_out = document.createElement("div");
+      div_out.id = "master_div";
+      body.appendChild(div_out);
+
+      //this creates the left div inside master div
+      var div_left = document.createElement("div");
+      div_left.id = "left_div";
+      div_left.style.borderColor = user_color;
+      div_out.appendChild(div_left);
+
+      //this creates the right dive inside master div
+      var div_right = document.createElement("div");
+      div_right.id = "right_div";
+      div_right.style.borderColor = user_color;
+      div_out.appendChild(div_right);
+
+      // this creates a paragraph inside of left div for their sign
+      var p1 = document.createElement("p");
+      p1.innerText = user_name + "'s star sign is " + user_sign + ".";
+      div_left.appendChild(p1);
+
+      // this creates a paragrap inside of the right dive for their sign
+      var p2 = document.createElement("p");
+      p2.innerText = user_name + " is from " + user_hometown + ".";
+      div_right.appendChild(p2);
+
+      var footer = document.createElement("footer");
+      footer.innerText = "Favorite CSS color: " + user_color;
+      footer.style.color = user_color;
+      body.appendChild(footer);
+    }
+
+    //adds an event listener to the page
+    button.addEventListener("click", newPage);
+    input4.addEventListener("keypress", function(){
+      if(event.keyCode === 13){
+        button.click();
+      }
+    });
+
+  </script>
+</body>
+</html>

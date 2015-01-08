@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Slabo+13px' rel='stylesheet' type='text/css'>
+		<link href="project_style.css" rel="stylesheet" type="text/css">
+        <link href="desert_code_format.css" rel="stylesheet" type="text/css">
+
+		<meta charset="UTF-8">
+		<meta name="description" content="Tiffany Poss Portfolio Website">
+		<meta name="keywords" content="HTML,CSS, CSS3, Ruby, JavaScript, Node,
+		Web Design, Design, Portfolio, Junior Developer, Tiffany Poss">
+		<meta name="author" content="Tiffany Poss">
+
+		<title>Tiffany Poss</title>
+	</head>
+
+	<body>
+
+<!--Heading -->
+		<div id= "header">
+			<a href="../index.html"><img src="../img/heading_img/logo.png"></a>
+			<ul>
+				<a href="../index.html"><li>HOME</li></a>
+				<a href="../resume.html"><li>RESUME</li></a>
+				<a href="../contact.html"><li>CONTACT</li></a>
+				<a href="../faqs.html"><li>FAQS</li></a>
+			</ul>
+		</div>
+
+<!-- This is the pic with air bubble -->
+        <div id = "me_bubble">
+            <img src="img/me_bubble.png">
+            <p>Hey, this is the first 
+            project I made using 
+            Canvas in html5. The clouds
+            react to the left and right
+            arrows keys.</p>
+        </div>
+
+
+<!-- Project -->
+		<div id="project">
+        <h2>Tree Project</h2>
+		<canvas id="the_canvas" width="700" height="600"></canvas>
+		</div>
+
+
+		 <div id="style_content">
+		 	<button id="button">Click to see code!</button>
+
+<!-- !!!!!!!!!!!!! -->
+<!-- This is the hidden content -->
+<!-- !!!!!!!!!!!!! -->
+
+		 	<div id="content">
+		 	<pre class="prettyprint"><code>
+  var canvas = document.getElementById("the_canvas");
+  var ctx = canvas.getContext("2d");
+
+  var moveRight = true;
+  var handleKeyDown = function(evt) {
+    if (evt.keyCode === 37) {
+      //Left arrow was pressed
+      moveRight = false;
+    } else if (evt.keyCode === 39) {
+      //Left arrow was pressed
+      moveRight = true;
+    }
+  }
+
+  window.addEventListener('keydown',handleKeyDown,true);
+
+  var x = 0
+  var y = 0
+  var z = 0
+
+  var draw = function() {
+
+  if (moveRight === true) {
+    //move the square to the right
+    x = x + 1;
+  } else {
+    //move the square to the left
+    x = x - 1;
+  }
+  //make sure it doesn't go off the screen though
+  if (x > canvas.width) {
+    x %= canvas.width;
+    x = 0;
+  }
+    //this is the part that makes the apples wiggle
+    y+=1;
+    if(y>1){
+      y=0;
+    };
+
+    z+=1;
+    if(z>canvas.height){
+      z=0;
+    };
+
+    // shadows
+    ctx.shadowColor = "DimGrey";
+    ctx.shadowBlur = 5;
+    ctx.shadowOffsetX = 2;
+    ctx.shadowOffsetY = 2;
+    ctx.fill();
+
+    //this is a moving background
+    var grd=ctx.createLinearGradient(100+z,0+z,300+z,600+z);
+    grd.addColorStop(1,"Tomato");
+    grd.addColorStop(0.3,"SkyBlue");
+    grd.addColorStop(0.2, "Thistle");
+    grd.addColorStop(0.1, "RoyalBlue");
+    ctx.fillStyle=grd;
+    ctx.fillRect(0,0,700,1200);
+
+    //sun
+    ctx.beginPath();
+    ctx.arc(530+z, 270+z, 80, 0, 2*Math.PI);
+    ctx.fillStyle = "rgba(233, 159, 95, 0.7)";
+    ctx.fill();
+
+    // background hill rectangle
+    ctx.beginPath();
+    ctx.fillStyle = "OliveDrab";
+    ctx.fillRect (0, 400, 700, 200);
+
+    // clouds are set with x that will be triggered
+    //to move left and right with arrow keys
+    //cloud1
+    ctx.beginPath();
+    ctx.arc(x+70, 67, 50, 0, 2*Math.PI);
+    ctx.fillStyle = "rgba(247, 175, 201, 0.6)";
+    ctx.fill();
+    //
+    ctx.beginPath();
+    ctx.arc(x+115, 80, 50, 0, 2*Math.PI);
+    ctx.fillStyle = "rgba(247, 175, 201, 0.6)";
+    ctx.fill();
+    //
+    ctx.beginPath();
+    ctx.arc(x+165, 50, 50, 0, 2*Math.PI);
+    ctx.fillStyle = "rgba(247, 175, 201, 0.6)";
+    ctx.fill();
+
+    // cloud2
+    ctx.beginPath();
+    ctx.arc(370+x, 87, 50, 0, 2*Math.PI);
+    ctx.fillStyle = "rgba(247, 175, 201, 0.6)";
+    ctx.fill();
+    //
+    ctx.beginPath();
+    ctx.arc(415+x, 70, 50, 0, 2*Math.PI);
+    ctx.fillStyle = "rgba(247, 175, 201, 0.6)";
+    ctx.fill();
+    //
+    ctx.beginPath();
+    ctx.arc(465+x, 70, 50, 0, 2*Math.PI);
+    ctx.fillStyle = "rgba(247, 175, 201, 0.6)";
+    ctx.fill();
+
+    // cloud3
+    ctx.beginPath();
+    ctx.arc(580+x, 180, 50, 0, 2*Math.PI);
+    ctx.fillStyle = "rgba(247, 175, 201, 0.6)";
+    ctx.fill();
+    //
+    ctx.beginPath();
+    ctx.arc(620+x, 210, 50, 0, 2*Math.PI);
+    ctx.fillStyle = "rgba(247, 175, 201, 0.6)";
+    ctx.fill();
+    //
+    ctx.beginPath();
+    ctx.arc(510+x, 220, 50, 0, 2*Math.PI);
+    ctx.fillStyle = "rgba(247, 175, 201, 0.6)";
+    ctx.fill();
+    //
+    ctx.beginPath();
+    ctx.arc(565+x, 248, 50, 0, 2*Math.PI);
+    ctx.fillStyle = "rgba(247, 175, 201, 0.6)";
+    ctx.fill();
+
+    // cloud4
+    ctx.beginPath();
+    ctx.arc(160+x, 250, 50, 0, 2*Math.PI);
+    ctx.fillStyle = "rgba(247, 175, 201, 0.6)";
+    ctx.fill();
+    //
+    ctx.beginPath();
+    ctx.arc(235+x, 210, 50, 0, 2*Math.PI);
+    ctx.fillStyle = "rgba(247, 175, 201, 0.6)";
+    ctx.fill();
+    //
+    ctx.beginPath();
+    ctx.arc(175+x, 190, 50, 0, 2*Math.PI);
+    ctx.fillStyle = "rgba(247, 175, 201, 0.6)";
+    ctx.fill();
+    //
+    ctx.beginPath();
+    ctx.arc(210+x, 260, 50, 0, 2*Math.PI);
+    ctx.fillStyle = "rgba(247, 175, 201, 0.6)";
+    ctx.fill();
+
+    // cloud5
+    ctx.beginPath();
+    ctx.arc(-70+x, 180, 50, 0, 2*Math.PI);
+    ctx.fillStyle = "rgba(247, 175, 201, 0.6)";
+    ctx.fill();
+    //
+    ctx.beginPath();
+    ctx.arc(-50+x, 210, 50, 0, 2*Math.PI);
+    ctx.fillStyle = "rgba(247, 175, 201, 0.6)";
+    ctx.fill();
+    //
+    ctx.beginPath();
+    ctx.arc(-140+x, 220, 50, 0, 2*Math.PI);
+    ctx.fillStyle = "rgba(247, 175, 201, 0.6)";
+    ctx.fill();
+    //
+    ctx.beginPath();
+    ctx.arc(-85+x, 248, 50, 0, 2*Math.PI);
+    ctx.fillStyle = "rgba(247, 175, 201, 0.6)";
+    ctx.fill();
+
+    // cloud 6
+    ctx.beginPath();
+    ctx.arc(640+x, 45, 50, 0, 2*Math.PI);
+    ctx.fillStyle = "rgba(247, 175, 201, 0.6)";
+    ctx.fill();
+    //
+    ctx.beginPath();
+    ctx.arc(690+x, 85, 50, 0, 2*Math.PI);
+    ctx.fillStyle = "rgba(247, 175, 201, 0.6)";
+    ctx.fill();
+
+
+    // tree trunk, rectangle
+    ctx.beginPath();
+    ctx.fillStyle = "SaddleBrown";
+    ctx.fillRect (280, 221, 120, 320);
+
+    // leafs tree background color, circle
+    ctx.beginPath();
+    ctx.arc(340+y, 200+y, 150, 0, 2*Math.PI);
+    ctx.fillStyle = "SeaGreen";
+    ctx.fill();
+
+    // apples and stems, circles & squares
+    ctx.beginPath();
+    ctx.arc(340+y, 200+y, 15, 0, 2*Math.PI);
+    ctx.fillStyle = "red";
+    ctx.fill();
+    //
+    ctx.beginPath();
+    ctx.fillStyle = "SaddleBrown";
+    ctx.fillRect (338+y, 175+y, 5, 15);
+
+    ctx.beginPath();
+    ctx.arc(400-y, 110-y, 15, 0, 2*Math.PI);
+    ctx.fillStyle = "red";
+    ctx.fill();
+    //
+    ctx.beginPath();
+    ctx.fillStyle = "SaddleBrown";
+    ctx.fillRect (398-y, 85-y, 5, 15);
+
+    ctx.beginPath();
+    ctx.arc(420+y, 220-y, 15, 0, 2*Math.PI);
+    ctx.fillStyle = "red";
+    ctx.fill();
+    //
+    ctx.beginPath();
+    ctx.fillStyle = "SaddleBrown";
+    ctx.fillRect (418+y, 195-y, 5, 15);
+
+    ctx.beginPath();
+    ctx.arc(280-y, 120+y, 15, 0, 2*Math.PI);
+    ctx.fillStyle = "red";
+    ctx.fill();
+    //
+    ctx.beginPath();
+    ctx.fillStyle = "SaddleBrown";
+    ctx.fillRect (278-y, 95+y, 5, 15);
+
+    ctx.beginPath();
+    ctx.arc(370+y, 290+y, 15, 0, 2*Math.PI);
+    ctx.fillStyle = "red";
+    ctx.fill();
+    //
+    ctx.beginPath();
+    ctx.fillStyle = "SaddleBrown";
+    ctx.fillRect (368+y, 265+y, 5, 15);
+
+    ctx.beginPath();
+    ctx.arc(250-y, 210+y, 15, 0, 2*Math.PI);
+    ctx.fillStyle = "red";
+    ctx.fill();
+    //
+    ctx.beginPath();
+    ctx.fillStyle = "SaddleBrown";
+    ctx.fillRect (248-y, 185+y, 5, 15);
+
+    ctx.beginPath();
+    ctx.arc(270+y, 290+y, 15, 0, 2*Math.PI);
+    ctx.fillStyle = "red";
+    ctx.fill();
+    //
+    ctx.beginPath();
+    ctx.fillStyle = "SaddleBrown";
+    ctx.fillRect (268+y, 265+y, 5, 15);
+
+  };
+
+  setInterval(draw, 150);
+		 		</code></pre>
+		 	
+		 	<button id = "button_two">Close Code</button>
+
+		 	</div>
+		 </div>
+		
+
+		 <script src="disappear.js"></script>
+		 <script src="tree_project.js"></script>
+
+
+<!-- Find Me -->
+		<div id="find_me">
+			<div id="find_div">
+				<div id="contact_div">
+					<h2>Find Me</h2>
+					<div class="contact">
+						<img src="../img/contact_img/find.png">
+						<p>Tiffany Poss</p>
+					</div>
+					<div class="contact">
+						<img src="../img/contact_img/phone.png" >
+						<p>1 (508) 648 - 1312</p>
+					</div>
+					<div class="contact">
+						<img src="../img/contact_img/mail.png">
+						<p>tiffanyposs@gmail.com</p>
+					</div>
+				</div>
+
+				<div id="social_media">
+
+                    <a href="https://github.com/tiffanyposs" target="blank"><img src="../img/contact_img/github.png"></a>
+                    <a href="http://instagram.com/tiffanyposs/" target="blank"><img src="../img/contact_img/instagram.png"></a>
+                    <a href="http://www.linkedin.com/in/tiffanyposs/" target="blank"><img src="../img/contact_img/linkedin.png"></a>
+                    <a href="http://www.pinterest.com/tiffanyposs/" target="blank"><img src="../img/contact_img/pintrest.png"></a>
+                    <a href="" target="blank"><img src="../img/contact_img/twitter.png"></a>
+				</div>
+			</div>
+				<div id="findme_color"></div>
+		</div>
+
+
+<!-- Footer -->
+		<div id="footer">
+			<ul>
+				<a href="../index.html"><li>HOME</li></a>
+				<a href="../resume.html"><li>RESUME</li></a>
+				<a href="../contact.html"><li>CONTACT</li></a>
+				<a href="../faqs.html"><li>FAQS</li></a>
+			</ul>
+		</div>
+
+    <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+
+	</body>
+
+</html>

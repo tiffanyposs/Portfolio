@@ -1,0 +1,131 @@
+/*page 1, might need body to have a different id for both*/
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  font-family: 'Titillium Web', sans-serif;
+  }
+
+#body_page1{
+  padding-left: 0;
+  padding-right: 0;
+  text-align: center;
+  margin: auto;
+  background-image: url("poly_background.jpg");
+  background-size: 100% 100%;
+  background-attachment: fixed;
+}
+
+#header_1{
+
+}
+
+#h2_page1{
+  font-size: 60px;
+  color: #94243D;
+  padding-top: 25px;
+  /*
+  background-color:
+  background-image: url("header_image.jpg");
+  background-size: 100% 100%;
+  height: 200px;
+  padding-top: 45px;
+  */
+}
+
+#div_page1{
+  margin: auto;
+  margin-top: 0px;
+  margin-bottom: 50px;
+  padding-top: 20px;
+  background-color: rgba(220, 219, 148, 0.7);
+  border-radius: 30px;
+  border: 5px solid #5D9137;
+  width: 550px;
+  height: 500px;
+}
+
+input{
+  display: block;
+  text-align: center;
+  margin: auto;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  font-size: 35px;
+  color: #93243D;
+}
+
+#button{
+  font-size: 25px;
+  color: white;
+  background-color: #9EC047;
+  padding: 5px;
+  margin-top: 20px;
+  border-radius: 10px;
+  width: 300px;
+}
+
+/*page 2*/
+/*body id changes to this*/
+#body_page2{
+
+  padding-left: 0;
+  padding-right: 0;
+  text-align: center;
+  margin: auto;
+  background-image: url("poly_background.jpg");
+  background-size: 100% 100%;
+  background-attachment: fixed;
+}
+
+#heading{
+}
+
+#h1_page2{
+  font-size: 60px;
+  color: #5D9137;
+  padding-top: 30px;
+}
+
+#master_div{
+  position: relative;
+  width: 900px;
+  height: 400px;
+  text-align: center;
+  margin: auto;
+}
+
+#left_div{
+  height: 400px;
+  width: 400px;
+  background-color: rgba(220, 219, 148, 0.7);
+  position: absolute;
+  border-radius: 30px;
+  border: 5px solid #5D9137;
+
+}
+
+#right_div{
+  height: 400px;
+  width: 400px;
+  left: 500px;
+  background-color: rgba(220, 219, 148, 0.7);
+  position: absolute;
+  border-radius: 30px;
+  border: 5px solid #5D9137;
+
+}
+
+p{
+  font-size: 40px;
+  padding-top: 100px;
+  color: #94243D;
+
+}
+
+footer{
+  font-size: 40px;
+  color: #5D9137;
+  margin-top: 40px;
+}

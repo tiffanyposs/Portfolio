@@ -1,0 +1,535 @@
+/*colors
+ light green rgb(72, 207, 174)
+ dark grey rgb(67, 74, 84)
+ medium grey  rgb(101, 109, 120)
+ light grey  rgb(170, 178, 189)
+ light pink  rgb(235, 122, 139)
+ red  rgb(222, 69, 84)
+
+font-family: 'Droid Sans', sans-serif;
+font-family: 'Slabo 13px', serif;
+ */
+
+body{
+	margin: 0 auto;
+	min-width: 1400px;
+}
+
+/*heading*/
+#header{
+	width: 100%;
+	background-color: rgb(101, 109, 120);
+	position: relative;
+}
+
+#header img{
+	margin-left: 3%;
+	margin-top: 1%;
+}
+
+#header ul{
+	color: white;
+	list-style-type: none;
+	background-color: rgb(72, 207, 174);
+	padding: 0.7%;
+	width: 600px;
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	margin: 0;
+}
+
+#header li{
+	text-decoration: none;
+	display: inline;
+	margin: 6%;
+	font-family: 'Droid Sans', sans-serif;
+	font-size: 1.2em;
+}
+
+#header a{
+	color: white;
+	text-decoration: none;
+}
+
+#header a:hover{
+	color: rgb(67, 74, 84);
+}
+
+/*main image*/
+
+#main_img{
+	width: 100%;
+	height: 850px;
+	background-color: rgb(222, 69, 84);
+	margin-top: -55px;
+}
+
+#main_img img{
+	height: 500px;
+	float: left;
+	margin-left: 150px;
+	margin-top: 200px;
+}
+
+#main_text{
+/*	position: absolute;*/
+	display: inline-block;
+	margin-left: 100px;
+	margin-top: 200px;
+}
+
+#main_text h1{
+	color: white;
+	font-size: 4.5em;
+/*	font-family: 'Droid Sans', sans-serif;*/
+	font-family: 'Slabo 13px', serif;
+}
+
+
+/*hi section*/
+
+#hi_main{
+	position: relative;
+	margin-bottom: 8%;
+}
+
+#grey_box{
+	width: 100%;
+	height: 220px;
+	background-color: rgb(67, 74, 84);
+	margin-top: -1%;
+}
+
+#img_div{
+	margin-top: -5%;
+	margin-left: 20%;
+	position: relative;
+}
+
+#img_div img{
+	margin-right: 2%;
+}
+
+
+#p_div{
+	background-color: rgb(101, 109, 120);
+	width: 30%;
+	min-width: 200px;
+	margin-top: -200px;
+	margin-left: 50%;
+	position: relative;
+	
+}
+
+#p_div p{
+	color: white;
+	padding: 5%;
+	font-size: 1.2em;
+	font-family: 'Slabo 13px', serif;
+}
+
+
+/*Design and Development*/
+
+
+#dev_container{
+	height: 300px;
+	color: white;
+}
+
+#dev{
+	background-color: rgb(170, 178, 189);
+	width: 60%;
+	text-align: right;
+	float: left;
+	height: 350px;
+	font-family: 'Droid Sans', sans-serif;
+}
+
+#design{
+	background-color: rgb(72, 207, 174);
+	width: 40%;
+	float: right;
+	height: 350px;
+	font-family: 'Slabo 13px', serif;
+}
+
+#dev p{
+	padding: 0 5% 0 20%;
+	font-size: 1.2em;
+}
+
+#design p{
+	padding: 0 20% 0 7%;
+	font-size: 1.2em;
+}
+
+#dev img{
+	position: absolute;
+	margin-left: -30px;
+	margin-top: -120px;
+}
+
+#dev h2{
+	padding-right: 40px;
+	font-size: 3em;
+}
+
+#design h2{
+	padding-left: 35px;
+	font-size: 3em;
+}
+
+/*Skills*/
+
+
+#skill_head{
+	width: 100%;
+	height: 200px;
+	background-color: rgb(67, 74, 84);
+}
+
+#skill_head h2{
+	color: rgb(72, 207, 174);
+	text-align: center;
+	font-family: 'Droid Sans', sans-serif;
+	font-size: 3em;
+	padding-top: 65px;
+
+}
+
+#skill_img{
+	background-color: rgb(101, 109, 120);
+	margin-top: -2%;
+	text-align: center;
+	padding: 70px 0 70px 0;
+}
+
+.skill_badge{
+	margin-bottom: 40px;
+}
+
+.skill_badge img{
+	margin: 15px;
+}
+
+#p_skill{
+	position: absolute;
+	font-family: 'Slabo 13px', serif;
+	font-size: 2em;
+	color: white;
+	margin-left: 10%;
+	float: left;
+	margin-top: 40px;
+}
+
+.skill{
+	margin-bottom: 170px;
+	text-align: right;
+}
+.skill span{
+	padding-bottom: 2px;
+	border-bottom: 3px solid white;
+}
+
+
+
+/*Projects*/
+/*I put a min width of 1400px for this section, might go 
+back to put on everything*/
+
+#project{
+	margin: 0 auto;
+	text-align: center;
+	height: 1100px;
+}
+
+#project h2{
+	font-family: 'Droid Sans', sans-serif;
+	color: rgb(72, 207, 174);
+	margin-top: 150px;
+	font-size: 4em;
+
+}
+
+#color_proj{
+	width: 100%;
+	height: 400px;
+	background-color: rgb(72, 207, 174);
+	margin-top: -670px;
+}
+
+.prac_group{
+
+}
+
+.practice{
+	width: 400px;
+	height: 400px;
+	border-radius: 200px;
+	border: 7px solid rgb(235, 122, 139);
+	display:inline-block;
+	margin: 20px;
+}
+
+.practice:hover{
+	width: 400px;
+	height: 400px;
+	border-radius: 200px;
+	border: 7px solid rgb(67, 74, 84);
+}
+
+
+#prac1{
+	background-image: url("img/project_img/blackwhite/project_1.png");	
+}
+#prac1:hover{
+	background-image: url("img/project_img/color/project_1.png");
+}
+
+#prac2{
+	background-image: url("img/project_img/blackwhite/project_2.png");
+}
+#prac2:hover{
+	background-image: url("img/project_img/color/project_2.png");
+}
+
+#prac3{
+	background-image: url("img/project_img/blackwhite/project_3.png");
+}
+#prac3:hover{
+	background-image: url("img/project_img/color/project_3.png");
+}
+
+#prac4{
+	background-image: url("img/project_img/blackwhite/project_4.png");
+}
+#prac4:hover{
+	background-image: url("img/project_img/color/project_4.png");
+}
+
+#prac5{
+	background-image: url("img/project_img/blackwhite/project_5.png");
+}
+#prac5:hover{
+	background-image: url("img/project_img/color/project_5.png");
+}
+
+#prac6{
+	background-image: url("img/project_img/blackwhite/project_6.png");
+}
+#prac6:hover{
+	background-image: url("img/project_img/color/project_6.png");
+}
+
+
+
+/*Schools*/
+
+#school_main{
+/*	margin-bottom: 600px;*/
+}
+
+#school_grey{
+	width: 100%;
+	height: 400px;
+	background-color: rgb(67, 74, 84);
+	/*position: absolute;*/
+}
+
+#school_head{
+	width: 400px;
+	height: 400px;
+	background-color: rgb(72, 207, 174);
+	margin-left: 135px;
+	float: left;
+
+}
+
+#school_header{
+	margin-top: 50px;
+}
+
+#school_head h3{
+	color: white;
+	font-size: 5em;
+	text-align: right;
+	font-family: 'Droid Sans', sans-serif;
+	margin: 20px;
+}
+
+
+
+#schools_img{
+	float: left;
+	margin-left: 50px;
+	margin-top: 30px;
+}
+
+#schools_img img{
+	margin: 20px;
+
+}
+
+#schools_text{
+	font-family: 'Slabo 13px', serif;
+	display: inline-block;
+	color: white;
+	margin-left: 50px;
+	width: 600px;
+	height: 400px;
+}
+
+#ga_text{
+	margin-top: 50px;
+}
+#fit_text{
+	margin-top: 90px;
+}
+
+#schools_text h4{
+	font-size: 2em;
+	margin-bottom: -10px;
+}
+
+#schools_text p{
+	font-size: 1.2em;
+	margin-bottom: -15px;
+}
+
+#italy{
+	width: 100%;
+	height: 200px;
+/*	position: absolute;*/
+	background-color: rgb(101, 109, 120);
+		font-family: 'Slabo 13px', serif;
+}
+
+#italy_header{
+	float: left;
+	font-size: 2.5em;
+	color: white;
+	margin-left: 165px;
+
+}
+
+#italy_header h3{
+	margin-top: 70px;
+}
+
+#italy_content{
+	margin-left: 50px;
+	color: white;
+	display: inline-block;
+}
+
+#italy_content h4{
+	font-size: 2em;
+	margin-bottom: -10px;
+}
+
+#italy_content p{
+	font-size: 1.2em;
+}
+
+#italy_content span{
+	border-bottom: 5px solid white;
+}
+
+
+
+/*Find me section*/
+
+
+#find_me{
+	width: 100%;
+	margin-top: 300px;
+	position: relative;
+}
+
+#find_div{
+	width: 700px;
+	height: 575px;
+	background-color: rgb(67, 74, 84);
+	margin: 0 auto;
+}
+
+#contact_div h2{
+	text-align: center;
+	font-family: 'Droid Sans', sans-serif;
+	font-size: 3.5em;
+	padding-top: 30px;
+	color: rgb(72, 207, 174);
+}
+
+
+.contact{
+	margin-bottom: 40px;
+	margin-left: 80px;
+}
+
+.contact img{
+	width: 80px;
+	float: left;
+	margin-right: 50px;
+}
+
+.contact p{
+	font-size: 2em;
+	font-family: 'Droid Sans', sans-serif;
+	color: white;
+	padding-top: 25px;
+}
+
+#social_media{
+	text-align: center;
+	margin-top: 50px;
+	display: block;
+}
+
+#social_media img{
+	margin: 10px;
+
+}
+
+#findme_color{
+	width: 100%;
+	height: 450px;
+	background-color: rgb(72, 207, 174);
+	margin-top: -450px;
+	position: relative;
+	z-index: -1;
+}
+
+/*footer*/
+
+#footer{
+	background-color: rgb(222, 69, 84);
+	width: 100%;
+	height: 125px;
+	text-align: center;
+	position: absolute;
+	color: white;
+	font-family: 'Droid Sans', sans-serif;
+}
+
+#footer ul{
+	list-style-type: none;
+		margin-top: 45px;
+}
+
+#footer li{
+	display: inline;
+	padding: 30px;
+	font-size: 1.5em;
+}
+
+#footer a{
+	color: white;
+	text-decoration: none;
+}
+
+#footer a:hover{
+	color: rgb(67, 74, 84);
+}

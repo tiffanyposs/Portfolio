@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Slabo+13px' rel='stylesheet' type='text/css'>
+		<link href="project_style.css" rel="stylesheet" type="text/css">
+    <link href="desert_code_format.css" rel="stylesheet" type="text/css">
+		
+
+		<meta charset="UTF-8">
+		<meta name="description" content="Tiffany Poss Portfolio Website">
+		<meta name="keywords" content="HTML,CSS, CSS3, Ruby, JavaScript, Node,
+		Web Design, Design, Portfolio, Junior Developer, Tiffany Poss">
+		<meta name="author" content="Tiffany Poss">
+
+		<title>Tiffany Poss</title>
+	</head>
+
+	<body>
+
+<!--Heading -->
+		<div id= "header">
+			<a href="../index.html"><img src="../img/heading_img/logo.png"></a>
+			<ul>
+				<a href="../index.html"><li>HOME</li></a>
+				<a href="../resume.html"><li>RESUME</li></a>
+				<a href="../contact.html"><li>CONTACT</li></a>
+				<a href="../faqs.html"><li>FAQS</li></a>
+			</ul>
+		</div>
+
+<!-- This is the pic with air bubble -->
+        <div id = "me_bubble">
+            <img src="img/me_bubble.png">
+            <p>Hello! Click the link
+            to check out the Chat App
+            I made! I used WebSockets
+            to write client and
+            server code!</p>
+        </div>
+
+
+
+<!-- Project -->
+		<div id="project">
+<!-- 			<h2>hello.chat</h2> -->
+			<a href="chat_project/index.html" target="blank"><img src="img/chat_img.png" id ="project_img"></a>
+		</div>
+
+
+		 <div id="style_content">
+		 	<button id="button">Click to see code!</button>
+
+<!-- !!!!!!!!!!!!! -->
+<!-- This is the hidden content -->
+<!-- !!!!!!!!!!!!! -->
+
+		 	<div id="content">
+		 	<pre class="prettyprint"><code>
+/////////////
+//Server File
+/////////////
+
+var WebSocketServer = require("ws").Server;
+var server = new WebSocketServer({port: 3000});
+
+var counter = 1;
+
+console.log("listening on port 3000 (press CTRL+C to quit)");
+///////
+//ON CONNECTION
+///////
+server.on("connection", function(connection){
+  console.log("Client Connected");
+  connection.usernumber = "user_" + counter;
+  counter++;
+
+
+  storage(connection);
+
+
+  ///////
+  //ON MESSAGE
+  ///////
+  //listen for incoming messages
+  connection.on("message", function(message){
+    bannedWords(message, connection);
+    sendMessage(message);
+  });//end message
+
+
+  ///////
+  //ON CLOSE
+  ///////
+  connection.on("close", function(){
+    console.log("Client Disconnected");
+    removeClient(connection);
+
+  });
+
+});//end connection
+/////////
+//END .ON FUNCTION
+/////////
+
+////////
+//START FUNCTIONS
+///////
+
+//this is for stored messages and clients
+var storedMessages = [];
+var storedClients = [];
+
+//pushes new clients, and loads stored messages
+//when they log on
+var storage = function(connection){
+  storedClients.push(connection);
+  storedMessages.forEach(function(each){
+    connection.send(each);
+  });
+}
+
+//this prints a message to the terminal,
+//stores the messages in storedMessages
+//and sends eachclient any incoming messages
+var sendMessage = function(message){
+  //message = replaceWords(message);
+  message = multipleWords(message);
+  storedMessages.push(message);
+  storedClients.forEach(function(each){
+    each.send(message);
+  })
+}
+
+// this removes the client from storedClients when they close
+var removeClient = function(connection){
+  for(var i = 0; i < storedClients.length; i++){
+    if(storedClients[i].usernumber === connection.usernumber){
+      storedClients.splice(i, 1);
+    }
+  }
+}
+
+
+//this filters any 'banned words' within
+//the badWords array and will
+var bannedWords = function(message, connection){
+  var badWords = ["kitten", "apple", "burrito"];
+  var hashedword = JSON.parse(message);
+  var string = hashedword.msg.toLowerCase();
+  var string_array = string.split(" ");
+  for(x = 0; x < string_array.length; x++){
+    badWords.forEach(function(each){
+      if(each === string_array[x]){
+        removeClient(connection);
+        connection.close();
+      }}
+    )}
+  }
+
+  //emoji list, used with multipleWords
+  var emoji = {
+    yell: "Ahhhhh",
+    tableflip: "(╯°□°）╯︵ ┻━┻",
+    butterfly: "Ƹ̵̡Ӝ̵̨̄Ʒ",
+    fish: "¸.·´¯`·.´¯`·.¸¸.·´¯`·.¸><(((º>",
+    house: "__̴ı̴̴̡̡̡ ̡͌l̡̡̡ ̡͌l̡*̡̡ ̴̡ı̴̴̡ ̡̡͡|̲̲̲͡͡͡ ̲▫̲͡ ̲̲̲͡͡π̲̲͡͡ ̲̲͡▫̲̲͡͡ ̲|̡̡̡ ̡ ̴̡ı̴̡̡ ̡͌l̡̡̡̡.___",
+    boombox: "♫♪.ılılıll|̲̅̅●̲̅̅|̲̅̅=̲̅̅|̲̅̅●̲̅̅|llılılı.♫♪",
+    sleep: "(-.-)Zzz..."
+  }
+
+  // this will replace a word from a message with something else
+  var multipleWords = function(message){
+    var hashedword = JSON.parse(message);
+    var string = hashedword.msg;
+    var array = string.split(" ");
+    for(var i = 0; i < array.length; i++){
+      if(array[i] === "(yell)"){
+        array.splice(i, 1, emoji.yell)
+      }
+      else if(array[i] === "(tableflip)"){
+        array.splice(i, 1, emoji.tableflip)
+      }
+      else if(array[i] === "(butterfly)"){
+        array.splice(i, 1, emoji.butterfly)
+      }
+      else if(array[i] === "(fish)"){
+        array.splice(i, 1, emoji.fish)
+      }
+      else if(array[i] === "(house)"){
+        array.splice(i, 1, emoji.house)
+      }
+      else if(array[i] === "(boombox)"){
+        array.splice(i, 1, emoji.boombox)
+      }
+      else if(array[i] === "(sleep)"){
+        array.splice(i, 1, emoji.sleep)
+      }
+    }///end for loop
+    string = array.join(" ");
+    hashedword.msg = string;
+    message = JSON.stringify(hashedword);
+    return message;
+  }//end multipleWords
+
+//////////////
+//////////////
+ //Client File
+//////////////
+//////////////
+
+//this is for local host
+var client = new WebSocket("ws://localhost:3000");
+
+client.addEventListener("open", function() {
+  console.log('connected');
+
+  //HTML elements
+  var body = document.querySelector("body");
+  var ul = document.querySelector("ul");
+  var button = document.getElementById("button");
+  var user_button = document.getElementById("user_button");
+
+
+  //BUTTON EVENT LISTENER
+  button.addEventListener("click", function(){
+    sendMessage();
+  })
+
+  // ON PRESSING ENTER
+  input.addEventListener("keypress", function(){
+    if(event.keyCode === 13){
+      button.click();
+    }
+  });
+
+  //listens for incoming messages
+  client.addEventListener("message", function(message){
+    messageLog(message);
+  });
+
+});//end open connection
+///////////
+
+
+///////
+//FUNCTIONS
+///////
+
+//this goes through all incoming messages and renders them depending
+//on if there is an image, plain text, or link
+var messageLog = function(message){
+  var newMessage = JSON.parse(message.data);
+  var msg_array = newMessage.msg.split(" ");
+  var array = [];
+  var ul = document.querySelector("ul");
+  var li = document.createElement("li");
+  //images
+  msg_array.forEach(function(each){
+    var end_digits = each.charAt(each.length-3) 
+    + each.charAt(each.length-2) 
+    + each.charAt(each.length- 1);
+    var first_digits = each.charAt(0) 
+    + each.charAt(1) 
+    + each.charAt(2) 
+    + each.charAt(3);
+    var ul = document.querySelector("ul");
+    var li = document.createElement("li");
+    //this renders images and gifs
+    if(end_digits === "jpg" || end_digits === "png"
+    || end_digits === "gif"){
+
+      var img = document.createElement("img");
+        img.setAttribute("src", each);
+        img.style.width = "200px";
+        li.innerHTML = newMessage.name + "    ";
+        li.appendChild(img);
+        ul.insertBefore(li, ul.firstChild);
+      }
+    //this renders links
+    else if(first_digits === "http" || first_digits === "www."){
+      var link = document.createElement("a");
+        link.href = each;
+        link.innerHTML = each;
+        li.innerHTML = newMessage.name + "    ";
+        li.appendChild(link);
+        ul.insertBefore(li, ul.firstChild);
+      }
+    else{
+      array.push(each);
+    }
+  });
+    //this prints all other text
+    if(array.length > 0){
+      li.innerText = newMessage.name + "    " + array.join(" ");
+      ul.insertBefore(li, ul.firstChild);
+    }
+  }
+
+var sendMessage = function(){
+  var input = document.getElementById("input");
+  var userInput = document.getElementById("username");
+  var user_div = document.getElementById("user_div");
+  var message_div = document.getElementById("message_div");
+  var messageObject = {name: "Anonymous:", msg: input.value};
+  //take messageObject, stringify and send to server
+  if (userInput.value.trim() != "") {
+    messageObject.name = userInput.value + ":";
+    userInput.style.visibility="hidden";
+    user_div.style.visibility="hidden";
+    message_div.style.visibility="visible";
+  }
+  //will only send something if the input actually has text
+  if (input.value.trim() != "" && userInput.value.trim() != "") {
+    client.send(JSON.stringify(messageObject));
+  }
+  //resets input box
+  input.value = "";
+}
+
+		 	</code></pre>
+		 	
+		 	<button id = "button_two">Close Code</button>
+
+		 	</div>
+		 </div>
+		
+
+		 <script src="disappear.js"></script>
+
+
+<!-- Find Me -->
+		<div id="find_me">
+			<div id="find_div">
+				<div id="contact_div">
+					<h2>Find Me</h2>
+					<div class="contact">
+						<img src="../img/contact_img/find.png">
+						<p>Tiffany Poss</p>
+					</div>
+					<div class="contact">
+						<img src="../img/contact_img/phone.png" >
+						<p>1 (508) 648 - 1312</p>
+					</div>
+					<div class="contact">
+						<img src="../img/contact_img/mail.png">
+						<p>tiffanyposs@gmail.com</p>
+					</div>
+				</div>
+
+				<div id="social_media">
+
+                    <a href="https://github.com/tiffanyposs" target="blank"><img src="../img/contact_img/github.png"></a>
+                    <a href="http://instagram.com/tiffanyposs/" target="blank"><img src="../img/contact_img/instagram.png"></a>
+                    <a href="http://www.linkedin.com/in/tiffanyposs/" target="blank"><img src="../img/contact_img/linkedin.png"></a>
+                    <a href="http://www.pinterest.com/tiffanyposs/" target="blank"><img src="../img/contact_img/pintrest.png"></a>
+                    <a href="" target="blank"><img src="../img/contact_img/twitter.png"></a>
+				</div>
+			</div>
+				<div id="findme_color"></div>
+		</div>
+
+
+<!-- Footer -->
+		<div id="footer">
+			<ul>
+				<a href="../index.html"><li>HOME</li></a>
+				<a href="../resume.html"><li>RESUME</li></a>
+				<a href="../contact.html"><li>CONTACT</li></a>
+				<a href="../faqs.html"><li>FAQS</li></a>
+			</ul>
+		</div>
+
+    <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+
+	</body>
+
+</html>
